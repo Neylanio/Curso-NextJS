@@ -1,6 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router'
-import { useState } from 'react';
 
 interface IProduct {
   id: string;

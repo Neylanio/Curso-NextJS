@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { useCallback } from 'react';
-import { Container, Title } from '../styles/pages/Home';
+import { Container, Title } from '@/styles/pages/Home';
 
 interface IProduct {
   id: string;
