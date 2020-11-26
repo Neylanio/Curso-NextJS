@@ -1,3 +1,4 @@
+import SEO from "@/components/Seo";
 import { GetStaticProps } from "next"
 
 interface iProduct {
@@ -12,21 +13,25 @@ interface ITop10Props {
 export default function top10({ products }: ITop10Props) {
   return (
     <div>
+      <SEO
+        title="Top 10"
+        shouldIndexPage={false}
+      />
       <h1>Top 10</h1>
       <ol>
-          { products.map(item => (
-            <li key={item.id}>
-             {item.title}   
-            </li>
-            )) 
-          }
-        </ol>
+        {products.map(item => (
+          <li key={item.id}>
+            {item.title}
+          </li>
+        ))
+        }
+      </ol>
     </div>
   )
 }
 
 export const getStaticProps: GetStaticProps<ITop10Props> = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/products`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
   const products = await response.json();
 
   return {
@@ -34,5 +39,5 @@ export const getStaticProps: GetStaticProps<ITop10Props> = async () => {
       products
     },
     revalidate: 5
-  }    
+  }
 }

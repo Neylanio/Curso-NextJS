@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { useCallback } from 'react';
 import { Container, Title } from '@/styles/pages/Home';
+import SEO from '@/components/Seo';
 
 interface IProduct {
   id: string;
@@ -23,6 +24,13 @@ export default function Home({ recommendedProducts }: IHomeProps) {
 
   return (
     <Container>
+
+      <SEO 
+        title="Home" 
+        shouldExcludeTitleSuffix 
+        image="boost.png"
+      />
+
       <Title>Hello World</Title>
       <section>
         <h2>Products</h2>
@@ -41,7 +49,7 @@ export default function Home({ recommendedProducts }: IHomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps<IHomeProps> = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/recommended`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recommended`);
   const recommendedProducts = await response.json();
 
   return {
