@@ -26,7 +26,7 @@ export default function top10({ products }: ITop10Props) {
 }
 
 export const getStaticProps: GetStaticProps<ITop10Props> = async () => {
-  const response = await fetch('http://localhost:3333/products');
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/products`);
   const products = await response.json();
 
   return {

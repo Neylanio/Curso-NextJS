@@ -17,7 +17,7 @@ export default function Home({ recommendedProducts }: IHomeProps) {
 
     // Lib so sera carregada quando o usuario clicar no botao e chegar nessa funcao callback
     // Essa lib so precisará ser carregada uma vez e quando o usuario for utiliza-la
-    const math = (await import('../lib/math')).default;
+    const math = (await import('@/lib/math')).default;
     alert(math.sum(3,4))
   }, []);
 
@@ -41,7 +41,7 @@ export default function Home({ recommendedProducts }: IHomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps<IHomeProps> = async () => {
-  const response = await fetch('http://localhost:3333/recommended');
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/recommended`);
   const recommendedProducts = await response.json();
 
   return {
